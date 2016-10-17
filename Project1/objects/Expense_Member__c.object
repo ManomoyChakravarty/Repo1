@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>Contribution_Amount_INR__c</fullName>
+        <externalId>false</externalId>
+        <label>Contribution Amount (INR)</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Expense__c</fullName>
+        <externalId>false</externalId>
+        <label>Expense</label>
+        <referenceTo>Expense__c</referenceTo>
+        <relationshipLabel>Expense Members</relationshipLabel>
+        <relationshipName>Expense_Members</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Member__c</fullName>
+        <externalId>false</externalId>
+        <label>Member</label>
+        <referenceTo>Member__c</referenceTo>
+        <relationshipLabel>Expense Members</relationshipLabel>
+        <relationshipName>Expense_Members</relationshipName>
+        <relationshipOrder>1</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <label>Expense Member</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>ExpMemId - {00000}</displayFormat>
+        <label>Expense_Member_Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Expense Members</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Amount_validation</fullName>
+        <active>true</active>
+        <description>Contribution amount must be less than or equal to the total expense</description>
+        <errorConditionFormula>Contribution_Amount_INR__c &gt;  Expense__r.Amount_INR__c</errorConditionFormula>
+        <errorMessage>Contribution Amount must be LESS THAN OR EQUAL to the total expense</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contribution_validation</fullName>
+        <active>true</active>
+        <description>Sum of individual contributions cannot exceed total expense</description>
+        <errorConditionFormula>Contribution_Amount_INR__c  &gt; ( Expense__r.Amount_INR__c  -  Expense__r.Total_Contribution_INR__c )</errorConditionFormula>
+        <errorMessage>Sum of individual contributions cannot exceed total expense</errorMessage>
+    </validationRules>
+</CustomObject>

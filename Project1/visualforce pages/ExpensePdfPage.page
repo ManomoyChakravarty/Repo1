@@ -1,0 +1,46 @@
+<!-- page for rendering PDF format -->
+
+
+<apex:page standardController="Expense__c" renderAs="pdf" extensions="ExpenseEXT" >
+  
+  <h2 style="color:#229562; text-align: center;">Details of Expenditure</h2>
+  <html>
+        
+        <body>
+        
+        <!-- for rendering table view -->
+            
+            <table width="600px" align="center" margin-top="20" >
+              <tr>
+                 <td>TOTAL AMOUNT</td>
+                 <td>{!Expense__c.Amount_INR__c}</td>
+              </tr>
+              
+              <tr>
+                    <td>EVENT DATE</td>
+                    <td>{!Expense__c.Date__c} </td>
+              </tr>
+              
+              <tr>
+                    <td>EVENT</td>
+                    <td>{!Expense__c.Name}</td>
+              </tr>
+              
+              
+              <apex:repeat value="{!memExp}" var="i">
+                    <tr>
+                        <td>{!i.Member__r.Name}</td>
+                        <td>{!i.Contribution_Amount_INR__c}</td>
+                    </tr>
+              </apex:repeat>
+                
+              <tr>
+                    <td>Total Contributed Amount</td>
+                    <td>{!Expense__c.Total_Contribution_INR__c}</td>
+              </tr>
+            
+                      
+            </table>      
+        </body>
+    </html>
+</apex:page>

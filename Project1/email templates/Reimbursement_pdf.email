@@ -1,0 +1,44 @@
+<!--<messaging:emailTemplate subject="Reimbursement" recipientType="User" relatedToType="Expense_Member__c">
+<messaging:plainTextEmailBody >
+Congratulations!
+This is your new Visualforce Email Template.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate> -->
+
+<messaging:emailTemplate subject="Expense details" recipientType="User" relatedToType="Expense_Member__c">
+<messaging:attachment renderAs="PDF" filename="Invoice.pdf">
+    <html>
+        <!--<head/>-->
+        <body>
+            <table border="2"  width="600px" Class="center" >
+              <tr>
+                 <td>Name</td>
+                 <td>{!relatedTo.Member__r.Name}</td>
+              </tr>
+              <tr>
+                    <td>Total Event cost</td>
+                    <td>{!relatedTo.Expense__r.Amount_INR__c} </td>
+              </tr>
+              <tr>
+                    <td>Your Contribution</td>
+                    <td>{!relatedTo.Contribution_Amount_INR__c} </td>
+              </tr>
+              <tr>
+                    <td>Event</td>
+                    <td>{!relatedTo.Expense__r.Name} </td>
+              </tr>
+              <tr>
+                    <td>Date</td>
+                    <td>{!relatedTo.Expense__r.Date__c} </td>
+              </tr>
+            
+            </table>      
+        </body>
+    </html>
+</messaging:attachment>
+<messaging:plainTextEmailBody >
+This is your bill, details mentioned in PDF. The bill amount shall be reimbursed to you.
+
+Thanks.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>
